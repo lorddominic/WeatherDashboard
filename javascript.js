@@ -15,10 +15,10 @@ $(document).ready(function () {
         var lat;
         var lon;
         var uv;
-        var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=c10bb3bd22f90d636baa008b1529ee25&units=imperial"
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=c10bb3bd22f90d636baa008b1529ee25&units=imperial"
 
         function getUV(lat, lon) {
-            var uvURL = "http://api.openweathermap.org/data/2.5/uvi?appid=c10bb3bd22f90d636baa008b1529ee25&lat=" + lat + "&lon=" + lon;
+            var uvURL = "https://api.openweathermap.org/data/2.5/uvi?appid=c10bb3bd22f90d636baa008b1529ee25&lat=" + lat + "&lon=" + lon;
             $.ajax({
                 url: uvURL,
                 method: "GET"
@@ -30,7 +30,7 @@ $(document).ready(function () {
             });
         }
         function forcast(city) {
-            var fcURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=c10bb3bd22f90d636baa008b1529ee25&units=imperial"
+            var fcURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=c10bb3bd22f90d636baa008b1529ee25&units=imperial"
             $.ajax({
                 url: fcURL,
                 method: "GET"
