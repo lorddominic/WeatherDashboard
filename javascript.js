@@ -14,6 +14,7 @@ $(document).ready(function () {
 
         var lat;
         var lon;
+        var uv;
         var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=c10bb3bd22f90d636baa008b1529ee25&units=imperial"
 
         function getUV(lat, lon) {
@@ -22,8 +23,9 @@ $(document).ready(function () {
                 url: uvURL,
                 method: "GET"
             }).then(function (data) {
-                var uv = data.value;
-                console.log(uv);
+              uv = data.value;
+                console.log("uv call", data.value);
+                $("#uv").text("UV Index: " + uv);
                 
             });
         }
@@ -118,11 +120,13 @@ $(document).ready(function () {
                 var $temp = $("<p>").text("Temperature: " + temp + " °F");
                 var $humidity = $("<p>").text("Humidity: " + humidity + "%");
                 var $wSpeed = $("<p>").text("Wind Speed: " + wSpeed + " MPH");
+                var $uvIndex = $("<p>").attr("id", "uv");
 
                 $weatherDiv.append($cityDiv);
                 $weatherDiv.append($temp);
                 $weatherDiv.append($humidity);
                 $weatherDiv.append($wSpeed);
+                $weatherDiv.append($uvIndex);
 
                 $("#weather-view").html($weatherDiv);
                 getUV(lat, lon);
