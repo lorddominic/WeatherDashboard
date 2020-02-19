@@ -23,10 +23,10 @@ $(document).ready(function () {
                 url: uvURL,
                 method: "GET"
             }).then(function (data) {
-              uv = data.value;
+                uv = data.value;
                 console.log("uv call", data.value);
                 $("#uv").text("UV Index: " + uv);
-                
+
             });
         }
         function forcast(city) {
@@ -47,6 +47,12 @@ $(document).ready(function () {
                 var $fc4Div = $("<div>");
                 var $fc5Div = $("<div>");
 
+                var fc1Icon = fcData.list[4].weather[0].icon;
+                var fc2Icon = fcData.list[12].weather[0].icon;
+                var fc3Icon = fcData.list[20].weather[0].icon;
+                var fc4Icon = fcData.list[28].weather[0].icon;
+                var fc5Icon = fcData.list[36].weather[0].icon;
+
                 var fc1temp = fcData.list[4].main.temp;
                 var fc2temp = fcData.list[12].main.temp;
                 var fc3temp = fcData.list[20].main.temp;
@@ -65,6 +71,12 @@ $(document).ready(function () {
                 var $fc4 = $("<h6>").text(fc4);
                 var $fc5 = $("<h6>").text(fc5);
 
+                var $fc1Icon =$("<img>").attr("src", "https://openweathermap.org/img/wn/" + fc1Icon + "@2x.png");
+                var $fc2Icon =$("<img>").attr("src", "https://openweathermap.org/img/wn/" + fc2Icon + "@2x.png");
+                var $fc3Icon =$("<img>").attr("src", "https://openweathermap.org/img/wn/" + fc3Icon + "@2x.png");
+                var $fc4Icon =$("<img>").attr("src", "https://openweathermap.org/img/wn/" + fc4Icon + "@2x.png");
+                var $fc5Icon =$("<img>").attr("src", "https://openweathermap.org/img/wn/" + fc5Icon + "@2x.png");
+
                 var $fc1temp = $("<p>").text("Temp: " + fc1temp + " °F");
                 var $fc2temp = $("<p>").text("Temp: " + fc2temp + " °F");
                 var $fc3temp = $("<p>").text("Temp: " + fc3temp + " °F");
@@ -81,6 +93,11 @@ $(document).ready(function () {
                 $fc3Div.append($fc3);
                 $fc4Div.append($fc4);
                 $fc5Div.append($fc5);
+                $fc1Div.append($fc1Icon);
+                $fc2Div.append($fc2Icon);
+                $fc3Div.append($fc3Icon);
+                $fc4Div.append($fc4Icon);
+                $fc5Div.append($fc5Icon);
                 $fc1Div.append($fc1temp);
                 $fc2Div.append($fc2temp);
                 $fc3Div.append($fc3temp);
@@ -111,18 +128,22 @@ $(document).ready(function () {
                 var temp = response.main.temp;
                 var humidity = response.main.humidity;
                 var wSpeed = response.wind.speed;
+                var icon = response.weather[0].icon;
+                console.log(icon);
                 lat = response.coord.lat;
                 lon = response.coord.lon;
                 console.log(lat);
                 console.log(lon);
 
                 var $cityDiv = $("<h2>").text(city + " (" + today + ")");
+                var $icon = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + icon + "@2x.png");
                 var $temp = $("<p>").text("Temperature: " + temp + " °F");
                 var $humidity = $("<p>").text("Humidity: " + humidity + "%");
                 var $wSpeed = $("<p>").text("Wind Speed: " + wSpeed + " MPH");
                 var $uvIndex = $("<p>").attr("id", "uv");
 
                 $weatherDiv.append($cityDiv);
+                $weatherDiv.append($icon);
                 $weatherDiv.append($temp);
                 $weatherDiv.append($humidity);
                 $weatherDiv.append($wSpeed);
