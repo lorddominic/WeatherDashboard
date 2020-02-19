@@ -1,16 +1,20 @@
 $(document).ready(function () {
+    var history = [];
+    getHistory();
     $('#run-search').on("click", function () {
         event.preventDefault();
         var input = $("#search-value").val();
         var city = input[0].toUpperCase() + input.slice(1);
-        var history = [];
         history.push(city);
         localStorage.setItem("history", JSON.stringify(history));
-        var parseHistory = JSON.parse(localStorage.getItem("history")) || [];
-        parseHistory.forEach(element => {
-            var li = $("<li>").text(element)
-            $(".historyli").append(li);
-        });
+
+        // $(".historyli").empty();
+        // var parseHistory = JSON.parse(localStorage.getItem("history"));
+        // parseHistory.forEach(element => {
+        //     var li = $("<li>").text(element)
+        //     $(".historyli").append(li);
+        // });
+        getHistory();
 
         var lat;
         var lon;
@@ -71,11 +75,11 @@ $(document).ready(function () {
                 var $fc4 = $("<h6>").text(fc4);
                 var $fc5 = $("<h6>").text(fc5);
 
-                var $fc1Icon =$("<img>").attr("src", "https://openweathermap.org/img/wn/" + fc1Icon + "@2x.png");
-                var $fc2Icon =$("<img>").attr("src", "https://openweathermap.org/img/wn/" + fc2Icon + "@2x.png");
-                var $fc3Icon =$("<img>").attr("src", "https://openweathermap.org/img/wn/" + fc3Icon + "@2x.png");
-                var $fc4Icon =$("<img>").attr("src", "https://openweathermap.org/img/wn/" + fc4Icon + "@2x.png");
-                var $fc5Icon =$("<img>").attr("src", "https://openweathermap.org/img/wn/" + fc5Icon + "@2x.png");
+                var $fc1Icon = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + fc1Icon + "@2x.png");
+                var $fc2Icon = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + fc2Icon + "@2x.png");
+                var $fc3Icon = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + fc3Icon + "@2x.png");
+                var $fc4Icon = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + fc4Icon + "@2x.png");
+                var $fc5Icon = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + fc5Icon + "@2x.png");
 
                 var $fc1temp = $("<p>").text("Temp: " + fc1temp + " °F");
                 var $fc2temp = $("<p>").text("Temp: " + fc2temp + " °F");
@@ -115,7 +119,6 @@ $(document).ready(function () {
                 $("#square5").html($fc5Div);
             });
         }
-
         if (city !== '') {
             $.ajax({
                 url: queryURL,
@@ -125,6 +128,7 @@ $(document).ready(function () {
                 console.log(response);
                 var today = moment().format("M/D/YYYY");
                 var $weatherDiv = $("<div>");
+
                 var temp = response.main.temp;
                 var humidity = response.main.humidity;
                 var wSpeed = response.wind.speed;
@@ -136,6 +140,7 @@ $(document).ready(function () {
                 console.log(lon);
 
                 var $cityDiv = $("<h2>").text(city + " (" + today + ")");
+
                 var $icon = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + icon + "@2x.png");
                 var $temp = $("<p>").text("Temperature: " + temp + " °F");
                 var $humidity = $("<p>").text("Humidity: " + humidity + "%");
@@ -149,6 +154,7 @@ $(document).ready(function () {
                 $weatherDiv.append($wSpeed);
                 $weatherDiv.append($uvIndex);
 
+                // $("#weather-view").html($weatherDiv);
                 $("#weather-view").html($weatherDiv);
                 getUV(lat, lon);
                 forcast(city);
@@ -158,4 +164,12 @@ $(document).ready(function () {
             $('#error').html('Field cannot be empty!');
         }
     });
+    function getHistory(){
+        $(".historyli").empty();
+        var parseHistory = JSON.parse(localStorage.getItem("history"));
+        parseHistory.forEach(element => {
+            var li = $("<li>").text(element)
+            $(".historyli").append(li);
+        });
+    }
 });
