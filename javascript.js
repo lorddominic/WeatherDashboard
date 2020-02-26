@@ -1,7 +1,8 @@
-$(document).ready(function () {
+$(document).ready(function() {
     var history = [];
+    localStorage.setItem("history", JSON.stringify(history));
     getHistory();
-    $('#run-search').on("click", function () {
+    $('#run-search').on("click", function() {
         event.preventDefault();
         var input = $("#search-value").val();
         var city = input[0].toUpperCase() + input.slice(1);
@@ -26,19 +27,20 @@ $(document).ready(function () {
             $.ajax({
                 url: uvURL,
                 method: "GET"
-            }).then(function (data) {
+            }).then(function(data) {
                 uv = data.value;
                 console.log("uv call", data.value);
                 $("#uv").text("UV Index: " + uv);
 
             });
         }
+
         function forcast(city) {
             var fcURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=c10bb3bd22f90d636baa008b1529ee25&units=imperial"
             $.ajax({
                 url: fcURL,
                 method: "GET"
-            }).then(function (fcData) {
+            }).then(function(fcData) {
                 console.log(fcData);
                 var fc1 = fcData.list[4].dt_txt.slice(0, 10);
                 var fc2 = fcData.list[12].dt_txt.slice(0, 10);
@@ -123,7 +125,7 @@ $(document).ready(function () {
             $.ajax({
                 url: queryURL,
                 method: "GET"
-            }).then(function (response) {
+            }).then(function(response) {
                 console.log(queryURL);
                 console.log(response);
                 var today = moment().format("M/D/YYYY");
@@ -159,12 +161,12 @@ $(document).ready(function () {
                 getUV(lat, lon);
                 forcast(city);
             });
-        }
-        else {
+        } else {
             $('#error').html('Field cannot be empty!');
         }
     });
-    function getHistory(){
+
+    function getHistory() {
         $(".historyli").empty();
         var parseHistory = JSON.parse(localStorage.getItem("history"));
         parseHistory.forEach(element => {
