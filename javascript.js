@@ -167,7 +167,7 @@ $(document).ready(function() {
     });
 
     function getHistory() {
-        $(".historyli").empty();
+        //$(".historyli").empty();
         var parseHistory = JSON.parse(localStorage.getItem("history"));
         parseHistory.forEach(element => {
             var li = $("<li>").text(element)
