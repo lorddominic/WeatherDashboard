@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var history = [];
-    localStorage.setItem("history", JSON.stringify(history));
+
     getHistory();
     $('#run-search').on("click", function() {
         event.preventDefault();
