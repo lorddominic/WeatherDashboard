@@ -1,18 +1,45 @@
-#square1{
-background-color: lightblue;
+body {
+    background-image: url(weatherapp.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
-#square2{
-background-color: lightblue;
+.navbar {
+    opacity: 0.8;
 }
-#square3{
-background-color: lightblue;
+.title {
+    display: inline-block;
+    padding-right: 15px;
 }
-#square4{
-background-color: lightblue;
+.future-cards {
+    background-color: #4f9bd1;
+    color: white;
+    margin: 10px;
+    padding: 8px;
+    display: inline-block;
 }
-#square5{
-background-color: lightblue;
+.future-weather {
+    text-align: center;
 }
-h2{
-    display: inline;
+.clear-btn,
+.city-btn {
+    margin: 0px 5px;
+    padding: 4px;
+}
+.search-card {
+    margin-bottom: 50px;
+    opacity: 0.6;
+    background-color: #4f9bd1;
+}
+.current-card {
+    margin: auto;
+    margin-bottom: 50px;
+    opacity: 0.8;
+}
+.future-card {
+    margin: auto;
+    margin-bottom: 50px;
+    opacity: 0.8;
+}
+.uvBtn {
+    border: none;
 }

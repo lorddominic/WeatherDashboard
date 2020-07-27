@@ -1,9 +1,22 @@
 # WeatherDashboard
-![QQ图片20200304082751](https://user-images.githubusercontent.com/46208528/75900539-4cce0a00-5dfa-11ea-8bb5-cb4f194074bb.png)
 
-This assignment requires us master the process of using ajax call to get different informations from a certain resource. The hard part of the assignment was taking care of the three ajax call. Getting data from a ajax call, then use the data as arguments to another ajax call. This assignment is surely challenging. It's a great practice of using ajax to connect to multiple resources.
+## Description
+This is a weather dashboard application for users to lok up both the current weather and the 5 days forecast for a city. When the user searches for a city, the weather information of the city will be shown. Including the city name, date, an icon representing the weather conditions, temperature, humidity, wind speed and UV index. This is a simple application that runs right in the browser, no installation or downloads needed.
+
+## [Try the app!]
+
+The following image shows a glimpse of the application:
+
+## Technologies used
+
+JavaScript - programming language <br>
+Bootstrap - CSS Framework <br>
+OpenWeatherMap - API for weather data
+
+## Contact
 
 Dominic Xu
+dominictxu@gmail.com
 
 [Link to the website](https://lorddominic.github.io/WeatherDashboard/)
 
